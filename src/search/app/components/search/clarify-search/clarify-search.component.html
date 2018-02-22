@@ -1,0 +1,21 @@
+<div class="clarify__search">
+    <div class="clarify__search__title style__title">Уточните поиск</div>
+    <div class="clarify__search__wrapper wrap search_results" data-infinite-scroll debounce infiniteScroll [scrollWindow]="true" [fromRoot]="true" [infiniteScrollDistance]="scrollDistance" [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle"
+        (scrolled)="onScrollDown()">
+        <a class="clarify__search__item" [routerLink]="['/', 'parts', item.producer.name.toLowerCase(), item.producerCode]" *ngFor="let item of array">
+            <div class="clarify__search__item__imgwr">
+                <!-- data-background-image="files/producers/items/{{item.producerId}}/{{item.producerCode}}.jpg" -->
+                <div class="clarify__search__item__imgwr__img" [ngStyle]="{ 'background-image': 'url(' + getImageUrl(item) + ')'}"></div>
+            </div>
+            <div class="clarify__search__item__name">
+                <div class="clarify__search__item__name__title">{{item.ruName}}</div>
+                <div class="clarify__search__item__name__en style__support" *ngIf="item.enName">англ. {{item.enName}}</div>
+            </div>
+            <div class="clarify__search__item__article">
+                <div class="clarify__search__item__article__title style__support">Артикул</div>
+                <div class="clarify__search__item__article__code style__link">{{item.producerCode}}</div>
+            </div>
+            <div class="clarify__search__item__manufacturer"><img class="clarify__search__item__manufacturer__img" src="/files/producers/logos/{{item.producerId}}/logo.png" alt=""></div>
+        </a>
+    </div>
+</div>

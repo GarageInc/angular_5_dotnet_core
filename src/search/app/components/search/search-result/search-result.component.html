@@ -1,0 +1,65 @@
+<div class="result__title style__title">
+    Мы нашли для вас {{items.length}} {{items.length|decline:'предложение':'предложения':'предложений'}}:</div>
+<div class="result__rhead">
+    <div class="result__rhead__col company">
+        <div class="result__rhead__caption style__support">Компания</div>
+    </div>
+    <div class="result__rhead__col contacts">
+        <div class="result__rhead__caption style__support">Контакты</div>
+    </div>
+    <div class="result__rhead__col vailability">
+        <div class="result__rhead__caption style__support">Наличие</div>
+        <div class="result__rhead__caption sort select" *ngIf="false"><span class="style__underlined">Наличие</span></div>
+    </div>
+    <div class="result__rhead__col delivery">
+        <div class="result__rhead__caption style__support">Способ доставки</div>
+    </div>
+    <div class="result__rhead__col price">
+        <div class="result__rhead__caption style__support">Цена</div>
+        <div class="result__rhead__caption sort" *ngIf="false"><span class="style__underlined">Цена</span></div>
+    </div>
+    <div class="result__rhead__col fresh__price">
+        <div class="fresh__price__popup" *ngIf="false">
+            <div class="fresh__price__popup__item select">Сегодня</div>
+            <div class="fresh__price__popup__item">За 7 дней</div>
+            <div class="fresh__price__popup__item">За 30 дней</div>
+            <div class="fresh__price__popup__item">Все</div>
+        </div>
+        <div class="result__rhead__caption style__support">Свежесть прайса</div>
+        <div class="result__rhead__caption"><span class="style__underlined" *ngIf="false">Свежесть прайса</span></div>
+    </div>
+</div>
+
+<div class="result__rbody">
+
+    <div class="result__rbody__row" *ngFor="let item of items" [routerLink]="['/', 'firms', item.supplier.searchName]">
+        <div class="result__rbody__col company">
+            <img class="company__img" src="files/suppliers/logos/{{item.supplier.searchName}}/{{item.supplier.logoName || 'logo.png'}}" alt="">
+        </div>
+        <div class="result__rbody__col contacts">
+            <div class="result__rbody__col__text" *ngFor="let addressItem of item.supplier.addresses">
+                <span class="sity">{{addressItem.address.locality}},</span>
+                <span class="other__adress">{{addressItem.address.location}}<br>{{addressItem.phone | phone}}
+                </span>
+            </div>
+        </div>
+        <div class="result__rbody__col vailability">
+            <!-- result__rbody__col__circle -->
+            <div class="" *ngIf="!!item.count">Есть в наличии</div>
+            <div class="result__rbody__col__text style__support" *ngIf="!item.count" style="margin-left:0px;">Под заказ,<br>5 дней</div>
+        </div>
+        <div class="result__rbody__col delivery">
+            <div class="result__rbody__col__text">{{item.supplier.deliveryMethods}}</div>
+        </div>
+        <div class="result__rbody__col price">
+            <div class="result__rbody__col__text" *ngIf="hasPrice(item)">{{ getPrice(item)}}</div>
+        </div>
+        <div class="result__rbody__col fresh__price">
+            <div class="result__rbody__col__text">{{(item.freshOfPrice || item.updatedAt || item.createdAt) | timeAgo }}</div>
+        </div>
+    </div>
+
+</div>
+
+<div class="result__more" *ngIf="false">
+    <div class="result__more__text">Ещё</div><img class="result__more__icon" src="search_module/assets/images/icons/plus.svg" alt=""></div>

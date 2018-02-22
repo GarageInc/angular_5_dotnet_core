@@ -1,0 +1,70 @@
+<div>
+    <div class="alert alert-success" role="alert">
+        Статистика
+    </div>
+
+
+    <div class="card-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Поставщики</h5>
+                <div class="card-text">
+                    <div>
+                        <span class="cart-element_subtitle">Всего поставщиков:</span>
+                        <span>{{statistic.counters.suppliers}}</span>
+                    </div>
+                    <div *ngIf="false">
+                        <div>Активно за месяц</div>
+                        <div></div>
+                    </div>
+                    <div>
+                        <span class="cart-element_subtitle">Точек продаж в БД:</span>
+                        <span>{{statistic.counters.salePoints}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Запчасти</h5>
+                <div class="card-text">
+                    <div>
+                        <span class="cart-element_subtitle">Производителей:</span>
+                        <span>{{statistic.counters.producers}}</span>
+                    </div>
+                    <div>
+                        <span class="cart-element_subtitle">Запчастей в БД:</span>
+                        <span>{{statistic.counters.parts.common}}</span>
+                    </div>
+                    <div>
+                        <span class="cart-element_subtitle">Активно запчастей</span>
+                        <span>{{statistic.counters.parts.active}}</span>
+                    </div>
+                    <div>
+                        <span class="cart-element_subtitle">Заблокировано</span>
+                        <span>{{statistic.counters.parts.blocked}}</span>
+                    </div>
+                    <div>
+                        <span class="cart-element_subtitle">На модерации</span>
+                        <span>{{statistic.counters.parts.onModeration}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Пользователи</h5>
+                <div class="card-text">
+                    <div>
+                        <span class="cart-element_subtitle">Пользователей:</span>
+                        <span>{{statistic.counters.users}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <app-catalog-item-statistic></app-catalog-item-statistic>
+    </div>
+</div>

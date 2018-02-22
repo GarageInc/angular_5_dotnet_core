@@ -1,0 +1,64 @@
+*:focus {
+	// box-shadow:
+	// 0 0 0 2px #2f7cc0;
+	outline: none;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: inherit;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+ul {
+	margin: 0;
+	list-style: none;
+	padding: 0;
+}
+
+p {
+	margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	margin: 0;
+	font-weight: 400;
+	font-size: inherit;
+}
+
+input {
+	border: none;
+	background-color: transparent;
+	color: inherit;
+	font-family: inherit;
+	border-radius: 0px;
+}
+
+button {
+	border: none;
+	font-family: inherit;
+	padding: 0;
+	background-color: transparent;
+	color: inherit;
+}
+
+select {
+	border: none;
+	background-color: transparent;
+	font-family: inherit;
+	-webkit-appearance:none;
+	padding: 0px;
+}

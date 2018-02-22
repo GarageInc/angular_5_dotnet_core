@@ -1,0 +1,29 @@
+<nav *ngIf="authorized" class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" style="height: 70px;">
+    <a class="navbar-brand" href="/">Печкин</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="/admin/#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/home">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/pages">Страницы</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/suppliers">Поставщики</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/catalogs">Каталоги запчастей</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/producers">Производители</a></li>
+            <li class="nav-item nav-item__moderation">
+                <a class="nav-link" routerLink="/admin/moderation">Модерация</a>
+                <span class="badge badge-pill badge-danger moderation-counter">{{countOnModeration}}</span>
+            </li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/seo">SEO</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/users">Пользователи</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right mr-auto" style="position: absolute;right: 0px;">
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/#">{{userName}}</a></li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink='/admin/login'>Выйти</a>
+            </li>
+        </ul>
+    </div>
+</nav>

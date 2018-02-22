@@ -1,0 +1,67 @@
+<div class="table-responsive" style="margin-top: 20px;">
+    <mat-radio-group [(ngModel)]="filter.status" (change)="load()">
+        <mat-radio-button value="1">На модерации</mat-radio-button>
+        <mat-radio-button value="0">Активные</mat-radio-button>
+        <mat-radio-button value="2">Заблокированные</mat-radio-button>
+    </mat-radio-group>
+    <table class="table table-light">
+        <thead>
+            <tr>
+                <th scope="col" class="moderation-table__column">
+                    #ID
+                </th>
+                <th scope="col" class="moderation-table__column">
+                    <input matInput placeholder="Производитель" (input)="load()" [(ngModel)]="filter.producerName">
+                </th>
+                <th scope="col" class="moderation-table__column">
+                    <input matInput placeholder="Артикул" (input)="load()" [(ngModel)]="filter.producerCode">
+                </th>
+                <th scope="col" class="moderation-table__column">
+                    <input matInput placeholder="Поставщик" (input)="load()" [(ngModel)]="filter.supplierName">
+                </th>
+                <th scope="col" class="moderation-table__column">
+                    <input matInput placeholder="Русское название" (input)="load()" [(ngModel)]="filter.ruName">
+                </th>
+                <th scope="col" class="moderation-table__column">
+                    <input matInput placeholder="Английское название" (input)="load()" [(ngModel)]="filter.enName">
+                </th>
+                <th scope="col" class="moderation-table__column">Статус</th>
+                <th scope="col" class="moderation-table__column"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <virtual-scroll #scroll [items]="buffer" (update)="scrollItems = $event" (end)="fetchMore($event)" [childHeight]="60" [parentScroll]="scroll.window">
+                <tr *ngFor="let item of scrollItems">
+                    <td scope="row" class="moderation-table__column">{{item.id}}</td>
+                    <td class="moderation-table__column">{{item.producerName}}</td>
+                    <td class="moderation-table__column">{{item.producerCode}}</td>
+                    <td class="moderation-table__column">{{item.supplierName}}</td>
+                    <td class="moderation-table__column">{{item.ruName}}</td>
+                    <td class="moderation-table__column">{{item.enName}}</td>
+                    <td class="moderation-table__column">
+                        <div [ngSwitch]="item.status">
+                            <span *ngSwitchCase="1">На модерации</span>
+                            <span *ngSwitchCase="0">Активно</span>
+                            <span *ngSwitchCase="2">Заблокировано</span>
+                        </div>
+                    </td>
+                    <td class="moderation-table__column">
+                        <span *ngIf="false" class="moderation-table__clickable">
+                            <img src="admin_module/assets/images/moderation/open.png"/>
+                        </span>
+                        <span class="moderation-table__clickable" (click)="show(item)">
+                            <img src="admin_module/assets/images/moderation/edit.png" />
+                        </span>
+                        <span class="moderation-table__clickable" *ngIf="!item.isDeleted" (click)="delete(item)">
+                            <img src="admin_module/assets/images/moderation/delete.png"/>
+                        </span>
+                    </td>
+                </tr>
+                <div class="loader">
+                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                    />
+                </div>
+            </virtual-scroll>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,23 @@
+virtual-scroll {
+    display: block;
+    height: 700px;
+}
+
+table tr {
+    display: block;
+    width: 100%;
+}
+
+.moderation-table__column {
+    width: 200px;
+    min-width: 200px;
+}
+
+input {
+    width: 150px;
+    min-width: 150px;
+}
+
+.moderation-table__clickable {
+    cursor: pointer;
+}

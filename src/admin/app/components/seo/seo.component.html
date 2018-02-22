@@ -1,0 +1,143 @@
+<div>
+
+    <div class="textarea-group mb-3" style="display: flex;">
+        <button type="button" class="btn btn-success form-control" (click)="update()">Сохранить</button>
+        <button type="button" class="btn btn-info form-control" (click)="reload()">Сбросить</button>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            Главная страница
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <mat-form-field>
+                    <textarea matInput placeholder="SEO 'title'" [(ngModel)]="searchSeoParams.main.title" id="title-main"></textarea>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput placeholder="SEO 'description'" [(ngModel)]="searchSeoParams.main.description" id="desciption-main"></textarea>
+                </mat-form-field>
+                <footer class="blockquote-footer">
+                    <div>Переменные в шаблонах </div>
+                    <div>
+                        <cite title="Название сайта" ngNonBindable>{{Название сайта}}</cite>
+                    </div>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <div class="card-header">
+            Поставщики
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <mat-form-field>
+                    <textarea matInput placeholder="SEO 'title'" id="title-suppliers" [(ngModel)]="searchSeoParams.suppliers.title"></textarea>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput placeholder="SEO 'description'" id="description-suppliers" [(ngModel)]="searchSeoParams.suppliers.description"></textarea>
+                </mat-form-field>
+                <footer class="blockquote-footer">
+                    <div>Переменные в шаблонах </div>
+                    <div>
+                        <cite title="Название сайта" ngNonBindable>{{Название сайта}}</cite>
+                    </div>
+                    <div>
+                        <cite title="Название сайта" ngNonBindable>{{Поставщик}}</cite>
+                    </div>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            Запчасти
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <mat-form-field>
+                    <textarea matInput placeholder="SEO 'title'" id="title-parts" [(ngModel)]="searchSeoParams.parts.title"></textarea>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput placeholder="SEO 'description'" id="description-parts" [(ngModel)]="searchSeoParams.parts.description"></textarea>
+                </mat-form-field>
+                <footer class="blockquote-footer">
+                    <div>Переменные в шаблонах </div>
+                    <div>
+                        <cite title="Артикул" ngNonBindable>{{Артикул}}</cite>
+                    </div>
+                    <div>
+                        <cite title="Название на русском" ngNonBindable>{{Название на русском}}</cite>
+                    </div>
+                    <div>
+                        <cite title="Название на английском" ngNonBindable>{{Название на английском}}</cite>
+                    </div>
+                    <div>
+                        <cite title="Производитель" ngNonBindable>{{Производитель}}</cite>
+                    </div>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            Уточнение поиска
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <mat-form-field>
+                    <textarea matInput placeholder="SEO 'title'" id="title-clarify" [(ngModel)]="searchSeoParams.clarify.title"></textarea>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput placeholder="SEO 'description'" id="description-clarify" [(ngModel)]="searchSeoParams.clarify.description"></textarea>
+                </mat-form-field>
+                <footer class="blockquote-footer">
+                    <div>Переменные в шаблонах </div>
+                    <div>
+                        <cite title="Артикул" ngNonBindable>{{Артикул}}</cite>
+                    </div>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            О компании
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <mat-form-field>
+                    <textarea matInput placeholder="SEO 'title'" id="title-about-project" [(ngModel)]="searchSeoParams.about.title"></textarea>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput placeholder="SEO 'description'" id="description-about-project" [(ngModel)]="searchSeoParams.about.description"></textarea>
+                </mat-form-field>
+                <footer class="blockquote-footer">
+                    <div>Переменные в шаблонах </div>
+                    <div>
+                        <cite title="Название сайта" ngNonBindable>{{Название сайта}}</cite>
+                    </div>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            Файл "robots.txt"
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <mat-form-field>
+                    <textarea matInput placeholder="robots.txt" [(ngModel)]="robotsTxt.text"></textarea>
+                </mat-form-field>
+            </blockquote>
+        </div>
+    </div>
+</div>

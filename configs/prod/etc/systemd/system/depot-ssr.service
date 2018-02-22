@@ -1,0 +1,15 @@
+[Unit]
+Description=Server side rendering for /var/www/depot-service
+
+[Service]
+WorkingDirectory=/var/www/depot-service
+ExecStart=/usr/bin/npm run serve:search
+Restart=always
+RestartSec=10  # Restart service after 10 seconds if service crashes
+SyslogIdentifier=depot-service-ssr
+User=deploy
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target

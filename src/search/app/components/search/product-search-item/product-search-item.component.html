@@ -1,0 +1,22 @@
+<div class="product">
+    <div class="product__img">
+        <img class="product__img__this" src="{{getImageUrl(item)}}" alt="">
+    </div>
+    <div class="product__name">
+        <div class="product__cat__title style__support">Деталь</div>
+        <!--<div class="product__cat__title style__support" *ngIf="!item.isExistInSuppliers">Отсутствует у поставщиков</div>-->
+        <h1 class="product__name__this">{{item.ruName ? item.ruName : item.enName}}</h1>
+        <div class="product__name__eng style__support" *ngIf="item.enName">англ. {{item.enName}}</div>
+    </div>
+    <div class="product__actirul">
+        <div class="product__cat__title style__support">Артикул</div>
+        <a class="product__actirul__this style__link" (click)="goToSearch(item)">{{item.producerCode}}</a>
+    </div>
+    <div class="product__manufacturer">
+        <div class="product__cat__title style__support">Производитель</div>
+        <img class="product__manufacturer__logo" src="/files/producers/logos/{{item.producerId}}/logo.png" alt=""></div>
+    <div class="product__price" *ngIf="item.recommendedPrice">
+        <div class="product__cat__title style__support">Цена рекомендованная<br> производителем</div>
+        <div class="product__price">{{item.recommendedPrice | currency:'₽':true:'1.0-0'}}</div>
+    </div>
+</div>

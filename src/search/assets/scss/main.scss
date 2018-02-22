@@ -1,0 +1,175 @@
+// stylelint-disable at-rule-empty-line-before
+@import 'variables';
+@import 'functions';
+@import 'mixins';
+@import 'sprites';
+@import 'fonts';
+@import 'vendor';
+@import 'base';
+@import 'header';
+@import 'header__block__search_form';
+@import 'page__result_search';
+@import 'page_clarify';
+@import 'page_company__full';
+@import 'page_company'; //
+@import 'page__about'; //
+// **********************************
+// STYLE GUIDE
+// **********************************
+.style {
+    &__link {
+        color: #0044ff;
+        transition: color 0.3s, border-color 0.3s;
+        cursor: pointer;
+        &:hover {
+            color: #eb4848;
+        }
+    }
+    &__disable {
+        color: #85a6ff;
+    }
+    &__support {
+        color: #868686;
+        font-size: 14px;
+        line-height: normal;
+    }
+    &__underlined {
+        color: #0044ff;
+        line-height: 16px;
+        display: block;
+        border-bottom: 1px dashed #0044ff;
+        transition: color 0.3s, border-color 0.3s;
+        &:hover {
+            color: #eb4848;
+            border-bottom: 1px dashed #eb4848;
+        }
+    }
+    &__title {
+        line-height: 34px;
+        font-family: 'Asket';
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        @media screen and (max-width: 719px) {
+            line-height: 24px;
+            font-size: 18px;
+        }
+    }
+    &__title__small {
+        line-height: 24px;
+        font-family: 'Asket';
+        font-size: 18px;
+        font-weight: bold;
+        @media screen and (max-width: 719px) {
+            line-height: 24px;
+            font-size: 16px;
+        }
+    }
+}
+
+// **********************************
+// common
+// **********************************
+body,
+html {
+    height: 100%;
+    background-color: #f1f1f1;
+    font-size: 16px;
+    color: #000;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.3px;
+    font-family: 'Stem';
+}
+
+.common_wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    &__content {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+    }
+    &__footer {
+        flex: 0 0 auto;
+    }
+    &__header {}
+    &__main {
+        height: 100%;
+        display: block;
+        flex-grow: 1;
+        .page__home & {
+            display: flex;
+        }
+    }
+}
+
+.wrap {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+// **********************************
+// footer
+// **********************************
+.footer {
+    &__wrap {
+        padding: 20px 40px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        @media screen and (max-width: 1800px) {
+            padding: 20px 15px;
+        }
+        box-sizing: border-box;
+        @media screen and (max-width: 719px) {
+            padding: 20px 10px;
+            flex-direction: column;
+        }
+    }
+    &__nav {
+        &__list {
+            display: flex;
+            align-items: center;
+            @media screen and (max-width: 719px) {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            &__item:not(last-child) {
+                margin-right: 50px;
+                @media screen and (max-width: 719px) {
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+    &__working-out {
+        display: flex;
+        align-items: center;
+        &>span:not(.footer__working-out__wrap) {
+            font-size: 14px;
+            letter-spacing: 0.3px;
+            color: #868686;
+            margin-right: 14px;
+        }
+        &>&__wrap {
+            font-size: 16px;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            img {
+                margin-right: 7px;
+            }
+            span {
+                @media screen and (max-width: 989px) {
+                    display: none;
+                }
+                @media screen and (max-width: 719px) {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}

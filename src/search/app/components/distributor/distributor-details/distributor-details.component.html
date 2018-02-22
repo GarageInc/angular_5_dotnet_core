@@ -1,0 +1,90 @@
+<div class="company_full" *ngIf="supplier">
+    <h1 class="company_full__title style__title">{{supplier.name}}</h1>
+    <div class="company_full__item">
+        <div class="company_full__item__info">
+            <div class="company_full__item__info__imgwr">
+                <img class="company_full__item__info__imgwr__img" *ngIf="supplier.logo" src="files/suppliers/logos/{{supplier.searchName}}/{{supplier.logo.name}}" alt="">
+            </div>
+            <div class="company_full__item__info__contacts">
+                <div class="company_full__item__info__contacts__url" *ngIf="supplier.site">
+                    <img class="company_full__item__info__contacts__url__icon" src="files/suppliers/logos/{{supplier.searchName}}/favicon.ico" alt="">
+                    <a class="company_full__item__info__contacts__url__adress style__link" href="{{supplier.site}}" target="_blank">{{supplier.site}}</a>
+                </div>
+                <a class="company_full__item__info__contacts__mail style__link" href="mailto:{{supplier.email}}" target="_blank">{{supplier.email}}</a>
+                <a class="company_full__item__info__contacts__tel" *ngFor="let item of getSupplierContacts()" href="tel:{{item.phone|phone}}" target="_blank">{{item.phone|phone}}</a>
+            </div>
+        </div>
+        <div class="company_full__item__offices">
+            <div class="company_full__item__offices__item" *ngFor="let item of supplier.salePoints">
+                <div class="company_full__item__offices__item__title style__title__small">{{item.name}}</div>
+                <a class="company_full__item__offices__item__map style__link" href="https://maps.google.com/?q={{item.address.locality}}, {{item.address.location}}" target="_blank">
+                    <img class="company_full__item__offices__item__map__icon" src="search_module/assets/images/icons/map.svg" alt="">
+                    <span class="company_full__item__offices__item__map__text">{{item.address.locality}}, {{item.address.location}}  </span>
+                </a>
+                <div class="company_full__item__offices__item__phones">
+                    <a class="company_full__item__offices__item__phones__item" *ngFor="let item of getSalePointContacts(item)" href="tel:{{item | phone}}" target="_blank">{{item|phone}}</a>
+                    <div class="company_full__item__offices__item__mails style__link">
+                        <a class="company_full__item__offices__item__mails__item" *ngIf="false" href="mailto:{{supplier.email}}" target="_blank">{{supplier.email}}</a>
+                    </div>
+                    <div class="company_full__item__offices__item__time-work">
+                        <div class="company_full__item__offices__item__time-work__title style__support">График работы:</div>
+                        <div class="company_full__item__offices__item__time-work__text" *ngFor="let timeWork of item.timeWorks">{{timeWork.description}}</div>
+                    </div>
+                    <div class="company_full__item__offices__item__delivery">
+                        <div class="company_full__item__offices__item__delivery__title style__support">Доставка:</div>
+                        <div class="company_full__item__offices__item__delivery__text">{{item.deliveryMethod}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="company_full__item__offices__item" *ngFor="let item of supplier.warehouses">
+                <div class="company_full__item__offices__item__title style__title__small">{{item.name}}</div>
+                <a *ngFor="let contact of item.contacts" class="company_full__item__offices__item__map style__link" href="https://maps.google.com/?q={{contact.address.locality}}, {{contact.address.location}}" target="_blank">
+                    <img class="company_full__item__offices__item__map__icon" src="search_module/assets/images/icons/map.svg" alt="">
+                    <span class="company_full__item__offices__item__map__text">{{contact.address.locality}}, {{contact.address.location}}  </span>
+                </a>
+                <div class="company_full__item__offices__item__phones">
+                    <a class="company_full__item__offices__item__phones__item" href="tel:{{item.phone}}" target="_blank">{{item.phone}}</a>
+                    <div class="company_full__item__offices__item__mails style__link">
+                        <a class="company_full__item__offices__item__mails__item" href="mailto:{{supplier.email}}" target="_blank">{{supplier.email}}</a>
+                    </div>
+                    <div class="company_full__item__offices__item__time-work" *ngIf="item.timeWork">
+                        <div class="company_full__item__offices__item__time-work__title style__support">График работы:</div>
+                        <div class="company_full__item__offices__item__time-work__text">{{item.timeWork}}</div>
+                    </div>
+                    <div class="company_full__item__offices__item__delivery" *ngIf="item.deliveryMethod">
+                        <div class="company_full__item__offices__item__delivery__title style__support">Доставка:</div>
+                        <div class="company_full__item__offices__item__delivery__text">{{item.deliveryMethod}}</div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="company_full__item__offices__item">
+                <div class="company_full__item__offices__item__title style__title__small">Москва (м. Авиамоторная)</div>
+                <a class="company_full__item__offices__item__map style__link" href="http://map.google.com" target="_blank"><img class="company_full__item__offices__item__map__icon" src="search_module/assets/images/icons/map.svg" alt=""><span class="company_full__item__offices__item__map__text">Москва, Авиамоторная ул д.28/6</span></a>
+                <div class="company_full__item__offices__item__phones"><a class="company_full__item__offices__item__phones__item" href="tel:" target="_blank">8 800 333-9-220</a><a class="company_full__item__offices__item__phones__item" href="tel:" target="_blank">+7 495 544-49-08</a></div>
+                <div class="company_full__item__offices__item__mails style__link"><a class="company_full__item__offices__item__mails__item" href="mailto:" target="_blank">zakaz@220-volt.ru</a></div>
+                <div class="company_full__item__offices__item__time-work" *ngIf="false">
+                    <div class="company_full__item__offices__item__time-work__title style__support">График работы:</div>
+                    <div class="company_full__item__offices__item__time-work__text">Пн–Пт: 09:00–21:00,<br>Сб–Вс: 10:00–20:00</div>
+                </div>
+                <div class="company_full__item__offices__item__delivery">
+                    <div class="company_full__item__offices__item__delivery__title style__support">Доставка:</div>
+                    <div class="company_full__item__offices__item__delivery__text">Самовывоз, курьер, транспортная компания</div>
+                </div>
+            </div>
+            <div class="company_full__item__offices__item">
+                <div class="company_full__item__offices__item__title style__title__small">Химки (ТЦ Мега-Химки)</div>
+                <a class="company_full__item__offices__item__map style__link" href="http://map.google.com" target="_blank"><img class="company_full__item__offices__item__map__icon" src="search_module/assets/images/icons/map.svg" alt=""><span class="company_full__item__offices__item__map__text">Химки, Ленинградское ш д.23КМ ТЦ «Мега-Химки»</span></a>
+                <div class="company_full__item__offices__item__phones"><a class="company_full__item__offices__item__phones__item" href="tel:" target="_blank">8 800 333-9-220</a><a class="company_full__item__offices__item__phones__item" href="tel:" target="_blank">+7 495 544-49-08</a></div>
+                <div class="company_full__item__offices__item__mails style__link"><a class="company_full__item__offices__item__mails__item" href="mailto:" target="_blank">zakaz@220-volt.ru</a></div>
+                <div class="company_full__item__offices__item__time-work" *ngIf="false">
+                    <div class="company_full__item__offices__item__time-work__title style__support">График работы:</div>
+                    <div class="company_full__item__offices__item__time-work__text">Пн–Пт: 09:00–21:00,<br>Сб–Вс: 10:00–20:00</div>
+                </div>
+                <div class="company_full__item__offices__item__delivery">
+                    <div class="company_full__item__offices__item__delivery__title style__support">Доставка:</div>
+                    <div class="company_full__item__offices__item__delivery__text">Самовывоз, курьер, транспортная компания</div>
+                </div>
+            </div>-->
+        </div>
+    </div>

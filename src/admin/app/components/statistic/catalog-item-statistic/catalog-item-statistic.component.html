@@ -1,0 +1,53 @@
+<div style="margin-top: 20px;">
+    <div class="alert alert-success" role="alert">
+        Статистика поиска
+    </div>
+
+    <div>
+        <mat-radio-group [(ngModel)]="timeType" (change)="loadForTime()">
+            <mat-radio-button value="{{TYPE_CURRENT_YEAR}}">За текущий год</mat-radio-button>
+            <mat-radio-button value="{{TYPE_CURRENT_MONTH}}">За текущий месяц</mat-radio-button>
+            <mat-radio-button value="{{TYPE_CURRENT_WEEK}}">За текущую неделю</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div class="table-responsive">
+        <virtual-scroll #scroll [items]="buffer" (update)="scrollItems = $event" (end)="fetchMore($event)" [childHeight]="60" [parentScroll]="scroll.window">
+
+            <table class="table table-light">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            Количество
+                        </th>
+                        <th scope="col">
+                            Артикул
+                        </th>
+                        <th scope="col">
+                            Производитель
+                        </th>
+                        <th scope="col">
+                            Русское название
+                        </th>
+                        <th scope="col">
+                            Английское название
+                        </th>
+                    </tr>
+                </thead>
+                <tbody #container>
+                    <tr *ngFor="let item of scrollItems">
+                        <td scope="row">{{item.requestsCount}}</td>
+                        <td>{{item.producerCode}}</td>
+                        <td>{{item.producerName}}</td>
+                        <td>{{item.catalogItemRuName}}</td>
+                        <td>{{item.catalogItemEnName}}</td>
+                    </tr>
+                    <div class="loader">
+                        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                        />
+                    </div>
+                </tbody>
+            </table>
+        </virtual-scroll>
+    </div>
+</div>

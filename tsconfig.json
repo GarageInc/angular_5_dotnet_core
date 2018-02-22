@@ -1,0 +1,34 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "module": "commonjs",
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": ["node_modules/@types"],
+    "removeComments": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "suppressExcessPropertyErrors": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "lib": ["dom", "es2017"], //"es2017",
+    "allowJs": false,
+    "strictNullChecks": true
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "silent": true
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "modules",
+    "definitions",
+    "packages/*/node_modules",
+    "packages/*/definitions"
+  ]
+}

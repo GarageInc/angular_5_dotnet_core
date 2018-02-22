@@ -1,0 +1,15 @@
+[Unit]
+Description=Depot App
+
+[Service]
+WorkingDirectory=/var/www/depot-service
+ExecStart=/usr/bin/dotnet /var/www/depot-service/bin/Debug/netcoreapp2.0/test.dll
+Restart=always
+RestartSec=10  # Restart service after 10 seconds if dotnet service crashes
+SyslogIdentifier=depot-service
+User=www-data
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target

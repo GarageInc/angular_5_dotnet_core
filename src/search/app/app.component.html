@@ -1,0 +1,33 @@
+<div class="common_wrapper">
+    <div class="common_wrapper__content">
+        <app-header>
+        </app-header>
+
+        <main class="common_wrapper__main main" [ngStyle]="{ 'display': isMainPage ? 'flex' : '' }">
+            <div class="search-form" [ngClass]="{
+                'search-form__align-middle': isMainPage
+            }">
+                <div class="wrap search-form__wrap">
+                    <h1 class="search-form__header style__title">Запасные части для&nbsp;котельного оборудования</h1>
+                    <form class="search-form__body" style="width: 100%;" [formGroup]="myForm" (ngSubmit)="search()">
+                        <!-- (keyup)="search()" (keydown)="handleKeyDown($event)"-->
+
+                        <input *ngIf="!isServer" style="width: 100%;height: 100%;" class="search-form__input" formControlName="searchString" [max-num-list]="10" ngui-auto-complete [no-match-found-text]="'Введите артикул'" [source]="tripsAndTricks" [list-formatter]="autocompleSeachFormatter"
+                            (customSelected)="search()" [(ngModel)]="myForm.value.searchString" type="submit" (valueChanged)="search()" type="text" placeholder="Введите артикул" />
+                        <input *ngIf="isServer" style="width: 100%;height: 100%;" class="search-form__input" formControlName="searchString" [(ngModel)]="myForm.value.searchString" type="submit" (valueChanged)="search()" type="text" placeholder="Введите артикул" />
+
+                        <button class="search-form__submit" type="submit" (click)="search()">Искать</button>
+                    </form>
+                    <div class="search-form__validation">
+                        <span *ngIf="!!searchString && !isValidSearchString()">Не менее четырех символов в артикуле</span>
+                    </div>
+                </div>
+            </div>
+
+            <router-outlet>
+            </router-outlet>
+        </main>
+    </div>
+
+    <app-footer></app-footer>
+</div>

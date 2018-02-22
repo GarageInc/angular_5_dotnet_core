@@ -1,0 +1,10 @@
+<header class="common_wrapper__header header">
+    <div class="wrap header__wrap">
+        <a class="header__logo" routerLink="/"><img class="header__logo__icon" src="search_module/assets/images/icons/logo.svg" alt="" /></a>
+        <div class="header__params__mob-button" *ngIf="false" #headerElement (click)="onMobButtonClick()"><span></span><span></span><span></span></div>
+        <div class="header__params">
+            <app-mobile-helper class="header__params"></app-mobile-helper>
+            <app-desctop-helper class="header__params"></app-desctop-helper>
+        </div>
+    </div>
+</header>

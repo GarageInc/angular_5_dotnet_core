@@ -1,0 +1,137 @@
+<h1 mat-dialog-title>
+    Добавление/Редактирование запчасти
+</h1>
+
+<mat-dialog-content>
+    <div>
+
+        <div>
+            <!-- PHOTO -->
+            <mat-card>
+                <mat-card-content>
+                    <div style="display: inline-block; width: 400px">
+                        <img mat-card-image style="width:200px;" src="{{imageUrl}}" />
+                    </div>
+                    <div style="display: inline-block;">
+                        <div style="display: block;">
+                            <div>Изменить фото</div>
+                            <input type="file" type="file" ng2FileSelect [uploader]="uploader" (onFileSelected)="upload()" />
+                        </div>
+
+                        <div>
+                            <mat-radio-group [(ngModel)]="item.status" [disabled]="item.isDeleted">
+                                <mat-radio-button value="0">Активно(опубликовано)</mat-radio-button>
+                                <mat-radio-button value="1">На модерации</mat-radio-button>
+                                <mat-radio-button value="2">Заблокировано</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+
+                        <div>
+                            <button *ngIf="!item.isDeleted" mat-raised-button color="warn" (click)="remove()">Удалить предложение</button>
+                            <button *ngIf="!!item.isDeleted" mat-raised-button color="primary" (click)="restore()">Удалено, восстановить?</button>
+                        </div>
+
+                        <div *ngIf="!item.catalogItemId">
+                            <span>Отсутствует в каталогах</span>
+                            <button mat-raised-button color="primary" (click)="createCatalogItem()" [disabled]="!item.ruName && !item.enName">Добавить</button>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-form-field>
+                    <input matInput placeholder="Артикул" [(ngModel)]="item.producerCode">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select placeholder="Производитель" [(ngModel)]="item.producerId">
+                        <mat-option *ngFor="let producer of producers" [value]="producer.id">
+                            {{ producer.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select placeholder="Поставщик" [(ngModel)]="item.supplierId" (change)="setSupplierData()">
+                        <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">
+                            {{ supplier.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field style="width: calc(100% - 50px);">
+
+                    <textarea style="display:inline-block;" matInput placeholder="Название на русском" [(ngModel)]="item.ruName" [required]="!item.enName"></textarea>
+
+                </mat-form-field>
+
+                <button mat-icon-button (click)="showSupplierPrices()" style="display:inline-block;">
+          <img src="admin_module/assets/images/moderation/binoculars.png" />
+        </button>
+
+                <mat-form-field style="display:block;">
+                    <textarea matInput placeholder="Название на английском" [(ngModel)]="item.enName" [required]="!item.ruName"></textarea>
+                </mat-form-field>
+            </mat-card>
+            <mat-card *ngIf="canShowMatches">
+                <div style="width: 500px; position:relative;">
+                    <div>
+                        <span>Предложения поставщиков(таблица)</span>
+                        <div style="display: inline-block; position: absolute; right: 0px;">
+                            <button mat-icon-button (click)="showSupplierPrices()">
+                <img src="admin_module/assets/images/moderation/refresh.png" />
+              </button>
+                            <button mat-icon-button (click)="closeMatches()">
+                <img src="admin_module/assets/images/moderation/close.png" />
+              </button>
+                        </div>
+                    </div>
+                    <table style="margin-top: 10px;">
+                        <thead>
+                            <th>Название</th>
+                            <th>Поставщик</th>
+                            <th></th>
+                        </thead>
+                        <tbody *ngFor="let match of suppliersMatch">
+                            <tr>
+                                <td>{{match.name}}</td>
+                                <td>{{match.supplierName}}</td>
+                                <td>
+                                    <button mat-raised-button color="warn" (click)="selectSupplierMatch(match)" *ngIf="match.name != item.ruName && match.name != item.enName">Выбрать</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </mat-card>
+            <mat-card>
+                <mat-form-field style="display:block;">
+                    <textarea matInput placeholder="SEO 'title'" [disabled]="!item.catalogItemId" [(ngModel)]="item.seo.name"></textarea>
+                </mat-form-field>
+                <mat-form-field style="display:block;">
+                    <textarea matInput placeholder="SEO 'description'" [disabled]="!item.catalogItemId" [(ngModel)]="item.seo.description"></textarea>
+                </mat-form-field>
+                <blockquote class="blockquote mb-0">
+                    <footer class="blockquote-footer">
+                        <div>Переменные в шаблонах </div>
+                        <div>
+                            <cite title="Артикул" ngNonBindable>{{Артикул}}</cite>
+                        </div>
+                        <div>
+                            <cite title="Название на русском" ngNonBindable>{{Название на русском}}</cite>
+                        </div>
+                        <div>
+                            <cite title="Название на английском" ngNonBindable>{{Название на английском}}</cite>
+                        </div>
+                        <div>
+                            <cite title="Производитель" ngNonBindable>{{Производитель}}</cite>
+                        </div>
+                    </footer>
+                </blockquote>
+            </mat-card>
+        </div>
+
+    </div>
+
+
+</mat-dialog-content>

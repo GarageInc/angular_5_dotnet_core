@@ -1,0 +1,13 @@
+{
+    "globalDependencies": {
+        "app": "file:./typings.d.ts"
+    },
+    "extends": "./../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./../wwwroot/search_module",
+        "baseUrl": "./",
+        "module": "es2015",
+        "types": []
+    },
+    "exclude": ["test.ts", "**/*.spec.ts", "server.ts"]
+}
